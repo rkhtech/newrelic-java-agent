@@ -1,20 +1,20 @@
-# Instructions for use
+## Instructions for use
 
-The main purpose of this container is to provide the necessary JAR files nessary for running the 
-NewRelic java agent inside an application container running Java without the need to modify the 
-application source code.
+The main purpose of this container is to provide the necessary JAR files through volume mapping 
+to an application container running Java.  That way the Java application does not need to be
+rebuilt, and control of running the app is handled at runtime, not at build time.
 
-### Start the container.  (The container does not need to be running)
+# Start the container.  (The container does not need to be running)
 ```
 docker run --name newrelic-java-agent rkhtech/newrelic-java-agent
 ```
 
-## Start another container that maps the newrelic agent jar file
+# Start another container that maps the newrelic agent jar file
 ```
 docker run --rm -it --volumes-from newrelic-java-agent ubuntu bash
 ```
 
-## Example running rancher-server with the NewRelic Agent running
+# Example running rancher-server with the NewRelic Agent running
 ```
 docker run -d \
 	--restart=unless-stopped -p 8080:8080 \
@@ -26,5 +26,4 @@ docker run -d \
 	-e NEW_RELIC_APP_NAME='Rancher-Server-Test-Java-Agent' \
 	rancher/server
 ```
-
 
