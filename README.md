@@ -1,0 +1,26 @@
+# Instructions for use
+
+### Start the container.  (The container does not need to be running)
+```
+docker run --name newrelic-java-agent rkhtech/newrelic-java-agent
+```
+
+## Start another container that maps the newrelic agent jar file
+```
+docker run --rm -it --volumes-from newrelic-java-agent ubuntu bash
+```
+
+## Example running rancher-server with the NewRelic Agent running
+```
+docker run -d \
+	--restart=unless-stopped -p 8080:8080 \
+	--name rancher-server \
+	--volumes-from newrelic-java-agent \
+	-e JAVA_OPTS='-javaagent:/newrelic/newrelic.jar' \
+	-e NEW_RELIC_APP_NAME=jenkins-env-vars \
+	-e NEW_RELIC_LICENSE_KEY=9999999999999999999999999999999999999999 \
+	-e NEW_RELIC_APP_NAME='Rancher-Server-Test-Java-Agent' \
+	rancher/server
+```
+
+
