@@ -1,5 +1,9 @@
 # Instructions for use
 
+The main purpose of this container is to provide the necessary JAR files nessary for running the 
+NewRelic java agent inside an application container running Java without the need to modify the 
+application source code.
+
 ### Start the container.  (The container does not need to be running)
 ```
 docker run --name newrelic-java-agent rkhtech/newrelic-java-agent
