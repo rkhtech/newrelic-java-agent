@@ -21,7 +21,6 @@ docker run -d \
 	--name rancher-server \
 	--volumes-from newrelic-java-agent \
 	-e JAVA_OPTS='-javaagent:/newrelic/newrelic.jar' \
-	-e NEW_RELIC_APP_NAME=jenkins-env-vars \
 	-e NEW_RELIC_LICENSE_KEY=9999999999999999999999999999999999999999 \
 	-e NEW_RELIC_APP_NAME='Rancher-Server-Test-Java-Agent' \
 	rancher/server
